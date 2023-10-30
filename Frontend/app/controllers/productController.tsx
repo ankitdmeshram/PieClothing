@@ -1,7 +1,7 @@
 import { postAPI } from "~/utils/api";
 
 // all products
-export const productController = () => {
+export const getProducts = () => {
   try {
     const body = {};
     return postAPI("", body);
