@@ -66,3 +66,80 @@ exports.createProduct = async (req, res) => {
     });
   }
 };
+
+exports.updateProduct = async (req, res) => {
+  try {
+    const {
+      _id,
+      name,
+      category,
+      description,
+      size,
+      color,
+      price,
+      offerPrice,
+      gallery,
+      seo_title,
+      seo_description,
+      seo_keywords,
+      created_date,
+      updated_date,
+    } = req.body;
+
+    const body = {
+      _id,
+      name,
+      category,
+      description,
+      size,
+      color,
+      price,
+      offerPrice,
+      gallery,
+      seo_title,
+      seo_description,
+      seo_keywords,
+      created_date,
+      updated_date,
+    }
+
+    if (!name || !price) {
+      return res.status(400).json({
+        success: false,
+        message: "Name and Price fields are required",
+      });
+    }
+    console.log("Product Id", _id)
+    const product = await Product.findByIdAndUpdate(_id, body);
+    console.log(product, "product");
+    return res.status(200).json({
+      success: true,
+      message: "Product Found Successfully",
+      body
+    });
+
+  } catch (error) {
+    console.log("error", error)
+    return res.status(500).json({
+      success: false,
+      message: error.message,
+    });
+
+  }
+
+}
+
+exports.singleProduct = async (req, res) => {
+  try {
+    const _id = req.body._id
+    const product = await Product.findById(_id);
+    console.log(product, "product");
+    return res.status(200).json({
+      success: true,
+      message: "Product Found Successfully",
+      product
+    });
+  } catch(e) {
+
+  }
+}
