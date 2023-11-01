@@ -1,10 +1,11 @@
 import { postAPI } from "~/utils/api";
+import { domain } from "~/utils/domain";
 
 // all products
 export const getProducts = () => {
   try {
     const body = {};
-    return postAPI("", body);
+    return postAPI(`${domain}/api/product/allproducts`, JSON.stringify(body));
   } catch (err) {
     console.log("Something went wrong", err);
   }
