@@ -7,10 +7,10 @@ exports.allProducts = async (req, res) => {
       success: true,
       products: products,
     });
-  } catch (e) {
+  } catch (error) {
     return res.status(500).json({
       success: false,
-      message: error.message,
+      message: error?.message,
     });
   }
 };
@@ -101,7 +101,7 @@ exports.updateProduct = async (req, res) => {
       seo_keywords,
       created_date,
       updated_date,
-    }
+    };
 
     if (!name || !price) {
       return res.status(400).json({
@@ -109,37 +109,32 @@ exports.updateProduct = async (req, res) => {
         message: "Name and Price fields are required",
       });
     }
-    console.log("Product Id", _id)
+    console.log("Product Id", _id);
     const product = await Product.findByIdAndUpdate(_id, body);
     console.log(product, "product");
     return res.status(200).json({
       success: true,
       message: "Product Found Successfully",
-      body
+      body,
     });
-
   } catch (error) {
-    console.log("error", error)
+    console.log("error", error);
     return res.status(500).json({
       success: false,
       message: error.message,
     });
-
   }
-
-}
+};
 
 exports.singleProduct = async (req, res) => {
   try {
-    const _id = req.body._id
+    const _id = req.body._id;
     const product = await Product.findById(_id);
     console.log(product, "product");
     return res.status(200).json({
       success: true,
       message: "Product Found Successfully",
-      product
+      product,
     });
-  } catch(e) {
-
-  }
-}
+  } catch (e) {}
+};
