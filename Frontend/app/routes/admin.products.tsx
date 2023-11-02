@@ -16,7 +16,7 @@ const AdminProducts = () => {
     }
   }, [loaderData]);
 
-  const deletePro = async (_id: any, index: number) => {
+  const deletePro = async (_id: any) => {
     try {
       const sure = confirm("Are you sure you want to delete this product?");
       if (sure) {
@@ -79,7 +79,7 @@ const AdminProducts = () => {
                           <td width={100}>
                             <button
                               className="delete"
-                              onClick={() => deletePro(product?._id, index)}
+                              onClick={() => deletePro(product?._id)}
                             >
                               Delete
                             </button>
