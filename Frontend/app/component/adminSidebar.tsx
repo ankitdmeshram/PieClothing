@@ -12,7 +12,7 @@ const AdminSidebar = () => {
           <Link to={"../admin/products"}>All Products</Link>
         </div>
         <div className="sidebar-menu">
-          <Link to={"./dashboard"}>Add New Product</Link>
+          <Link to={"../admin/addproduct"}>Add New Product</Link>
         </div>
         <div className="sidebar-menu">
           <Link to={"./dashboard"}>Orders</Link>

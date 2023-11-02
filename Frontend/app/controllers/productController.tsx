@@ -12,10 +12,10 @@ export const getProducts = () => {
 };
 
 // add products
-export const addProduct = () => {
+export const addProduct = (product: any) => {
   try {
-    const body = {};
-    return postAPI("", body);
+    const body = product;
+    return postAPI(`${domain}/api/product/createproduct`, JSON.stringify(body));
   } catch (err) {
     console.log("Something went wrong", err);
   }

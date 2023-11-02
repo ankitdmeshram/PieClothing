@@ -70,24 +70,77 @@
   padding: 10px;
 }
 .pro-table td {
-    padding: 10px;
-    text-align: center;
+  padding: 10px;
+  text-align: center;
 }
 .pro-table .pro-price span {
-    text-decoration: line-through;
-    font-size: 10px;
+  text-decoration: line-through;
+  font-size: 10px;
 }
 .delete {
-    background-color: red;
-    border: none;
-    padding: 8px 20px;
-    color: white;
-    font-size: 16px;
+  background-color: red;
+  border: none;
+  padding: 8px 20px;
+  color: white;
+  font-size: 16px;
 }
 .edit {
-    background-color: darkgrey;
-    border: none;
-    padding: 8px 20px;
-    color: white;
-    font-size: 16px;
+  background-color: darkgrey;
+  border: none;
+  padding: 8px 20px;
+  color: white;
+  font-size: 16px;
+}
+
+.pro-form {
+  padding: 10px;
+}
+.pro-form label {
+  display: none;
+}
+
+.pro-form input {
+  width: 100%;
+  padding: 5px;
+  margin: 5px 0px;
+}
+.pro-form textarea {
+  width: 100%;
+  padding: 5px;
+  margin: 5px 0px;
+}
+
+.pro-form-btn {
+  padding: 5px 20px;
+  font-size: 14px;
+}
+
+.pro-input-flex {
+  display: flex;
+}
+
+.input-flex input {
+  width: 90%;
+}
+.input-flex .pro-form-btn {
+  width: 10%;
+}
+.tags-name {
+  padding: 5px 10px 10px 0px;
+}
+.tags-name span {
+  padding: 5px;
+  background-color: rgba(0, 0, 0, 0.808);
+  margin: 5px;
+  color: white;
+}
+.tags-name span:first {
+  margin: 0;
+}
+.submit-btn {
+  width: 100%;
+  background-color: black;
+  color: white;
+  padding: 10px;
+  font-size: 14px;
 }
