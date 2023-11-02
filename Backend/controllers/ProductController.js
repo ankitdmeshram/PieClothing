@@ -136,5 +136,31 @@ exports.singleProduct = async (req, res) => {
       message: "Product Found Successfully",
       product,
     });
-  } catch (e) {}
+  } catch (e) { }
 };
+
+exports.deleteProduct = async (req, res) => {
+  try {
+    const id = req.body._id
+    console.log(id)
+    const product = await Product.findById({ _id: id })
+    if (!product) {
+      return res.status(404).json({
+        success: false,
+        message: "Product not found",
+      })
+    }
+    await Product.findByIdAndDelete({ _id: id })
+    res.status(200).json({
+      success: true,
+      message: "Product deleted successfully",
+    })
+  }
+  catch (error) {
+    console.log(error)
+    res.status(500).json({
+      success: false,
+      message: "Product Cannot be deleted successfully"
+    })
+  }
+}
