@@ -1,9 +1,10 @@
 import AdminSidebar from "~/component/adminSidebar";
 import styles from "../styles/admin.css";
 import AdminHeader from "~/component/adminHeader";
-import { getProducts } from "~/controllers/productController";
+import { deleteProduct, getProducts } from "~/controllers/productController";
 import { useLoaderData } from "@remix-run/react";
 import { useEffect, useState } from "react";
+
 const AdminProducts = () => {
   const loaderData: any = useLoaderData();
   const [products, setProducts] = useState([]);
@@ -14,6 +15,26 @@ const AdminProducts = () => {
       setProducts(loaderData?.products);
     }
   }, [loaderData]);
+
+  const deletePro = async (_id: any, index: number) => {
+    try {
+      const sure = confirm("Are you sure you want to delete this product?");
+      if (sure) {
+        const response: any = await deleteProduct(_id);
+        if (response?.success) {
+          setProducts((prev: any) => {
+            const updatedProduct = prev.filter((item: any) => item?._id != _id);
+            return updatedProduct;
+          });
+          alert("Product Deleted Successfully");
+        } else {
+          alert(`${response?.message}`);
+        }
+      }
+    } catch (error) {
+      console.log("Something went wrong", error);
+    }
+  };
 
   return (
     <>
@@ -39,7 +60,7 @@ const AdminProducts = () => {
                   {products.length > 0 &&
                     products.map((product: any, index) => {
                       return (
-                        <tr>
+                        <tr key={product?._id}>
                           <td width={10}>{index + 1}</td>
                           <td>{product?.name}</td>
                           <td className="pro-price">
@@ -56,7 +77,12 @@ const AdminProducts = () => {
                           <td>{product?.created_date}</td>
                           <td>{product?.updated_date}</td>
                           <td width={100}>
-                            <button className="delete">Delete</button>
+                            <button
+                              className="delete"
+                              onClick={() => deletePro(product?._id, index)}
+                            >
+                              Delete
+                            </button>
                           </td>
                           <td width={100}>
                             <button className="edit">Edit</button>

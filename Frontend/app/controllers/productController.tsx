@@ -32,10 +32,12 @@ export const updateProduct = () => {
 };
 
 // delete product
-export const deleteProduct = () => {
+export const deleteProduct = (_id: string) => {
   try {
-    const body = {};
-    return postAPI("", body);
+    const body = {
+      _id: _id,
+    };
+    return postAPI(`${domain}/api/product/deleteproduct`, JSON.stringify(body));
   } catch (err) {
     console.log("Something went wrong", err);
   }
